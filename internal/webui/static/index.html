@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LambdaChat Slackbot Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-container">
+                    <h1>LambdaChat Slackbot</h1>
+                    <div class="connection-status">
+                        <span id="status-indicator"></span>
+                        <span id="status-text">Connecting...</span>
+                    </div>
+                </div>
+                <div class="controls">
+                    <div class="filter-controls">
+                        <button id="filter-all" class="filter-btn active">All</button>
+                        <button id="filter-logs" class="filter-btn">Logs</button>
+                        <button id="filter-user" class="filter-btn">User Input</button>
+                        <button id="filter-response" class="filter-btn">Responses</button>
+                    </div>
+                    <button id="clear-logs" class="action-btn">Clear Logs</button>
+                    <button id="auto-scroll-toggle" class="action-btn active">Auto-scroll</button>
+                </div>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <div class="logs-container" id="logs-container">
+                <!-- Logs will be inserted here via JavaScript -->
+                <div class="empty-state" id="empty-state">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="#6c757d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>Waiting for Slack activity...</p>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="stats-panel">
+                    <h3>Statistics</h3>
+                    <div class="stat-row">
+                        <span class="stat-label">Total Entries:</span>
+                        <span class="stat-value" id="total-count">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">System Logs:</span>
+                        <span class="stat-value" id="logs-count">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">User Inputs:</span>
+                        <span class="stat-value" id="user-count">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Bot Responses:</span>
+                        <span class="stat-value" id="response-count">0</span>
+                    </div>
+                </div>
+                
+                <div class="connection-panel">
+                    <h3>Connection</h3>
+                    <div class="connection-details">
+                        <div class="connection-item">
+                            <span class="connection-label">Status:</span>
+                            <span class="connection-value" id="connection-status">Disconnected</span>
+                        </div>
+                        <div class="connection-item">
+                            <span class="connection-label">Web Socket:</span>
+                            <span class="connection-value" id="websocket-status">Inactive</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="active-channels">
+                    <h3>Active Channels</h3>
+                    <ul id="channels-list">
+                        <li class="empty-channel-msg">No active channels</li>
+                    </ul>
+                </div>
+                
+                <div class="active-users">
+                    <h3>Active Users</h3>
+                    <ul id="users-list">
+                        <li class="empty-user-msg">No active users</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <div class="footer-status">
+                <span id="log-count">0 entries</span>
+                <span id="connection-info">WebSocket: disconnected</span>
+            </div>
+            <div class="timestamp">
+                Last update: <span id="last-timestamp">--</span>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
